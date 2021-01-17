@@ -1,0 +1,29 @@
+#### LendHub 项目
+- LendHub 整体fork自Compound
+- 目录结构：
+    - contracts目录，所有用到的原始合约文件
+    - solInOne目录, 所有的合约文件通过truffle-flattener进行合并后的单一文件，方便部署和调试
+- 修改点
+    1. Governance 目录下
+        - GovernorAlpha.sol 改了个name 其它并未改动
+        - LendHub.sol 原Comp代币，修改了名称、数量
+    2. test
+        - heco HRC20 代币合约，从其它链代币跨链转换过去的合约
+        - TestUsdt.sol 仅测试用
+        - CarefulMath.sol 无改动
+        - Comptroller.sol 为 Compound ComptrollerV6.sol，删除了ComptrollerV5Storage以及compContributorSpeeds相关内容
+        - ComptrollerStorage.sol 删除ComptrollerV5Storage 存储相关内容
+        - CToken.sol      无改动
+        - Exponential.sol 无改动
+        - ExponentialNoError.sol 无改动
+        - LErc20.sol      对应Compound CErc20.sol 改了名称无其它改动
+        - LErc20Delegate.sol  对应Compound CErc20Delegate.sol 改了名称无其它改动
+        - LErc20Delegator.sol 对应Compound CErc20Delegator.sol 改了名称无其它改动
+        - LErc20Immutable.sol 对应Compound CErc20Immutable.sol  改了名称无其它改动
+        - LHT.sol             对应Compound CEther.sol  改了名称，无逻辑改动
+        - PriceOracle.sol   无改动
+        - SimplePriceOracle.sol  上线初期使用简单oracle，后续替换，增加存储 baseSymbol 和 baseTokenPrice 用于存储LTH的价格，部署时baseSymbol设置为LHT
+        - Timelock.sol 无改动
+        - Unitroller.sol 无改动
+        - WhitePaperInterestRateModel.sol 根据heco出块时间，修改参数为blocksPerYear 为10512000
+- 测试网址: http://13.251.127.72:8080/
